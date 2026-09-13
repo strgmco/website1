@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stratagem — zero to one</title>
+<meta name="description" content="Stratagem works with founders in the stretch before a company exists: turning a conviction into a proposition, and a proposition into evidence.">
+<style>
+:root {
+  --bg: #0F0F0E;
+  --fg: #F2F0EA;
+  --muted: #A8A69E;
+  --dim: #6E6C66;
+  --line: #2A2A27;
+  --measure: 34rem;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: ui-sans-serif, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 56rem; margin: 0 auto; padding: 0 2rem; }
+header {
+  border-bottom: 1px solid var(--line);
+  padding: 1.4rem 0;
+}
+.mark { font-size: 1rem; font-weight: 500; letter-spacing: 0.04em; }
+section { border-bottom: 1px solid var(--line); padding: 4rem 0; }
+#hero { padding: 7rem 0 6rem; border-bottom: 1px solid var(--line); }
+h1 {
+  font-size: clamp(1.9rem, 5vw, 2.6rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin: 0 0 1.1rem;
+  max-width: 22ch;
+}
+.lede { color: var(--muted); margin: 0 0 2rem; max-width: var(--measure); }
+.contact-head { font-size: 1.5rem; color: var(--fg); letter-spacing: 0; margin-bottom: 1rem; }
+.eyebrow {
+  font-size: 0.8rem;
+  color: var(--dim);
+  letter-spacing: 0.06em;
+  margin: 0 0 1.8rem;
+}
+h2 { font-size: 1.05rem; font-weight: 500; margin: 0 0 0.35rem; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 2rem;
+}
+.grid p { color: var(--muted); font-size: 0.95rem; margin: 0; }
+.steps { display: flex; flex-direction: column; gap: 1.3rem; max-width: 40rem; }
+.step { max-width: 40rem; }
+.num { color: var(--dim); font-size: 0.9rem; min-width: 1.4rem; padding-top: 0.15rem; }
+.step p { margin: 0; color: var(--muted); font-size: 1rem; }
+.step b { color: var(--fg); font-weight: 500; }
+form { max-width: 26rem; display: flex; flex-direction: column; gap: 1.1rem; }
+label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 0.4rem; }
+input, textarea {
+  width: 100%;
+  background: #171715;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 0.6rem 0.75rem;
+}
+textarea { min-height: 7rem; resize: vertical; }
+input:focus, textarea:focus, a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+.btn {
+  display: inline-block;
+  align-self: flex-start;
+  background: none;
+  border: 1px solid var(--dim);
+  border-radius: 4px;
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 0.55rem 1.3rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.btn:hover { border-color: var(--fg); background: #1A1A18; }
+footer { padding: 1.4rem 0 3rem; color: var(--dim); font-size: 0.85rem; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media (max-width: 40rem) {
+  .wrap { padding: 0 1.25rem; }
+  #hero { padding: 4rem 0; }
+  section { padding: 3rem 0; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap"><span class="mark">Stratagem</span></div>
+</header>
+
+<section id="hero">
+  <div class="wrap">
+    <h1>Zero to one is its own discipline.</h1>
+    <p class="lede">Most advice assumes a company already exists. Stratagem works with founders in the stretch before that — where there's a conviction, no evidence, and every choice still open.</p>
+    <a class="btn" href="#contact">Start a conversation</a>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Services</p>
+    <div class="grid">
+      <div>
+        <h2>Product-market fit</h2>
+        <p>Establishing whether the fit is real, and naming what would show it isn't.</p>
+      </div>
+      <div>
+        <h2>ICP</h2>
+        <p>Defining who the product is actually for, narrowly enough to act on.</p>
+      </div>
+      <div>
+        <h2>Go-to-market</h2>
+        <p>How the first customers hear about you, and why they say yes.</p>
+      </div>
+      <div>
+        <h2>Growth</h2>
+        <p>Turning a channel that worked once into one that works repeatedly.</p>
+      </div>
+      <div>
+        <h2>Customer success and retention</h2>
+        <p>A framework that keeps the first cohort from quietly leaking away.</p>
+      </div>
+    </div>
+  </div>
+  </section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">How we work</p>
+    <div class="steps">
+      <div class="step">
+        <p><b>Engagements start where it's broken.</b> There's no fixed order. Sometimes the ICP is wrong and nothing downstream can work until it's fixed. Sometimes the fit is real and the motion simply doesn't exist yet.</p>
+      </div>
+      <div class="step">
+        <p><b>We operate, not only advise.</b> Where it's useful we stand in — fractional, hands on the work — and run the motion until it runs without us.</p>
+      </div>
+      <div class="step">
+        <p><b>You keep the system.</b> The engagement ends with something repeatable your team owns, and revenue on the board while it gets built.</p>
+      </div>
+    </div>
+  </div>
+  </section>
+
+<section id="contact">
+  <div class="wrap">
+    <p class="eyebrow contact-head">Contact us</p>
+    <p class="lede">Tell us what you're building and where you need help.</p>
+
+    <!-- WIRING THE FORM
+         Netlify: keep data-netlify="true" below and it emails you on submit
+         (set the address in Site settings > Forms > Form notifications).
+         Any other host: delete the two netlify attributes and instead sign up
+         at formspree.io, then set action="https://formspree.io/f/YOURID". -->
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="company">
+      <input type="hidden" name="form-name" value="contact">
+      <p hidden><label>Leave blank: <input name="company"></label></p>
+      <div>
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required>
+      </div>
+      <div>
+        <label for="detail">What are you building, and where do you need help?</label>
+        <textarea id="detail" name="detail" required></textarea>
+      </div>
+      <button class="btn" type="submit">Send</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Stratagem · Boston · 2026</div>
+</footer>
+
+</body>
+</html>
