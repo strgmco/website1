@@ -5,157 +5,340 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stratagem — zero to one</title>
 <meta name="description" content="Stratagem works with founders in the stretch before a company exists: turning a conviction into a proposition, and a proposition into evidence.">
+<link rel="canonical" href="https://www.strgm.co/">
+<meta name="theme-color" content="#0C0B0A">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.strgm.co/">
+<meta property="og:site_name" content="Stratagem">
+<meta property="og:title" content="Stratagem — zero to one">
+<meta property="og:description" content="Zero to one is its own discipline. Stratagem works with founders in the stretch before a company exists — and doesn't stop at advice.">
+<meta property="og:image" content="https://www.strgm.co/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Stratagem — zero to one is its own discipline.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Stratagem — zero to one">
+<meta name="twitter:description" content="Zero to one is its own discipline. Stratagem works with founders in the stretch before a company exists — and doesn't stop at advice.">
+<meta name="twitter:image" content="https://www.strgm.co/og.png">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='6'%20fill='%230C0B0A'/%3E%3Crect%20x='10'%20y='10'%20width='12'%20height='12'%20transform='rotate(45%2016%2016)'%20fill='%23D9A441'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-:root {
-  --bg: #0F0F0E;
-  --fg: #F2F0EA;
-  --muted: #A8A69E;
-  --dim: #6E6C66;
-  --line: #2A2A27;
-  --measure: 34rem;
+:root{
+  color-scheme: dark;
+  --ink:#0C0B0A;
+  --panel:#131110;
+  --grid:#1C1916;
+  --grid-hot:#3A342C;
+  --line:#26221E;
+  --fg:#EDEAE3;
+  --muted:#A5A198;
+  --dim:#85837B;
+  --signal:#D9A441;
+  --signal-soft:rgba(217,164,65,.13);
+  --rail:5rem;
+  --measure:38rem;
+  --mx:50vw; --my:30vh;
+  --f-display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
-* { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--fg);
-  font-family: ui-sans-serif, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-  font-size: 17px;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
+*{box-sizing:border-box;}
+[hidden]{display:none!important;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--fg);
+  font-family:var(--f-display);
+  font-size:17px;
+  line-height:1.62;
+  font-variation-settings:"wght" 400,"wdth" 100;
+  -webkit-font-smoothing:antialiased;
 }
-.wrap { max-width: 56rem; margin: 0 auto; padding: 0 2rem; }
-header {
-  border-bottom: 1px solid var(--line);
-  padding: 1.4rem 0;
+
+/* ---------- ambient grid field ---------- */
+.field,.field-hot{position:fixed;inset:0;pointer-events:none;z-index:0;}
+.field{
+  background-image:
+    linear-gradient(to right,var(--grid) 1px,transparent 1px),
+    linear-gradient(to bottom,var(--grid) 1px,transparent 1px);
+  background-size:52px 52px;
 }
-.mark { font-size: 1rem; font-weight: 500; letter-spacing: 0.04em; }
-section { border-bottom: 1px solid var(--line); padding: 4rem 0; }
-#hero { padding: 7rem 0 6rem; border-bottom: 1px solid var(--line); }
-h1 {
-  font-size: clamp(1.9rem, 5vw, 2.6rem);
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: -0.015em;
-  margin: 0 0 1.1rem;
-  max-width: 22ch;
+.field-hot{
+  background-image:
+    linear-gradient(to right,var(--grid-hot) 1px,transparent 1px),
+    linear-gradient(to bottom,var(--grid-hot) 1px,transparent 1px);
+  background-size:52px 52px;
+  opacity:0;
+  -webkit-mask-image:radial-gradient(circle 300px at var(--mx) var(--my),#000 0%,rgba(0,0,0,.4) 42%,transparent 78%);
+  mask-image:radial-gradient(circle 300px at var(--mx) var(--my),#000 0%,rgba(0,0,0,.4) 42%,transparent 78%);
+  transition:opacity .5s ease;
 }
-.lede { color: var(--muted); margin: 0 0 2rem; max-width: var(--measure); }
-.contact-head { font-size: 1.5rem; color: var(--fg); letter-spacing: 0; margin-bottom: 1rem; }
-.note { color: var(--dim); font-size: 0.9rem; margin: -1.2rem 0 2rem; max-width: var(--measure); }
-.eyebrow {
-  font-size: 0.8rem;
-  color: var(--dim);
-  letter-spacing: 0.06em;
-  margin: 0 0 1.8rem;
+@media (hover:hover) and (pointer:fine){ .field-hot{opacity:1;} }
+
+/* ---------- page shell + ruler rail ---------- */
+.page{
+  position:relative;z-index:1;
+  max-width:68rem;margin:0 auto;
+  padding-inline:1.25rem;
 }
-h2 { font-size: 1.05rem; font-weight: 500; margin: 0 0 0.35rem; }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-  gap: 2rem;
+.rail{display:none;}
+@media (min-width:60rem){
+  .page{padding-left:var(--rail);}
+  .rail{
+    display:block;position:absolute;top:2rem;bottom:0;
+    left:calc(var(--rail) - 2.6rem);width:14px;pointer-events:none;
+    border-left:1px solid var(--line);
+    background-image:repeating-linear-gradient(to bottom,var(--line) 0 1px,transparent 1px 13px);
+  }
 }
-.grid p { color: var(--muted); font-size: 0.95rem; margin: 0; }
-.steps { display: flex; flex-direction: column; gap: 1.3rem; max-width: 40rem; }
-.step { max-width: 40rem; }
-.num { color: var(--dim); font-size: 0.9rem; min-width: 1.4rem; padding-top: 0.15rem; }
-.step p { margin: 0; color: var(--muted); font-size: 1rem; }
-.step b { color: var(--fg); font-weight: 500; }
-form { max-width: 26rem; display: flex; flex-direction: column; gap: 1.1rem; }
-label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 0.4rem; }
-input, textarea {
-  width: 100%;
-  background: #171715;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  color: var(--fg);
-  font: inherit;
-  font-size: 0.95rem;
-  padding: 0.6rem 0.75rem;
+header.site{
+  display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  padding:1.6rem 0;border-bottom:1px solid var(--line);
 }
-textarea { min-height: 7rem; resize: vertical; }
-input:focus, textarea:focus, a:focus-visible, button:focus-visible {
-  outline: 2px solid var(--fg);
-  outline-offset: 2px;
+.mark{
+  font-size:.95rem;font-variation-settings:"wght" 600,"wdth" 112;
+  letter-spacing:.16em;text-transform:uppercase;
 }
-.btn {
-  display: inline-block;
-  align-self: flex-start;
-  background: none;
-  border: 1px solid var(--dim);
-  border-radius: 4px;
-  color: var(--fg);
-  font: inherit;
-  font-size: 0.95rem;
-  padding: 0.55rem 1.3rem;
-  cursor: pointer;
-  text-decoration: none;
-  transition: border-color 0.15s, background 0.15s;
+.coord{font-family:var(--f-mono);font-size:.68rem;color:var(--dim);letter-spacing:.08em;}
+
+section{position:relative;border-bottom:1px solid var(--line);padding-block:4.5rem;}
+@media (min-width:60rem){
+  section::before{
+    content:"";position:absolute;left:calc(-1 * var(--rail) + 2.4rem);top:-1px;
+    width:1.9rem;height:1px;background:var(--signal);opacity:.55;
+  }
 }
-.btn:hover { border-color: var(--fg); background: #1A1A18; }
-footer { padding: 1.4rem 0 3rem; color: var(--dim); font-size: 0.85rem; }
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
-@media (max-width: 40rem) {
-  .wrap { padding: 0 1.25rem; }
-  #hero { padding: 4rem 0; }
-  section { padding: 3rem 0; }
+#hero{padding-block:6rem 4.5rem;}
+#services{padding-block:3.2rem 4.5rem;}
+
+h1{
+  margin:0 0 1.4rem;
+  font-size:clamp(2.5rem,6.2vw,4.6rem);
+  line-height:1.05;letter-spacing:-.025em;
+  font-variation-settings:"wght" 500,"wdth" 100;
+}
+.hline{display:block;}
+.hline span{display:inline;will-change:font-variation-settings;}
+@media (min-width:48rem){ .hline{white-space:nowrap;} }
+
+.lede{color:var(--muted);margin:0 0 2rem;max-width:var(--measure);font-size:1.02rem;}
+.note{color:var(--dim);font-size:.88rem;max-width:var(--measure);margin:0 0 2rem;}
+.eyebrow{
+  font-family:var(--f-mono);font-size:.7rem;color:var(--dim);
+  letter-spacing:.16em;text-transform:uppercase;margin:0 0 1.6rem;
+  display:flex;align-items:center;gap:.7rem;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line);}
+
+.btn{
+  display:inline-flex;align-items:center;gap:.7rem;
+  background:none;border:1px solid var(--dim);border-radius:2px;
+  color:var(--fg);font-family:var(--f-mono);font-size:.78rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:.72rem 1.3rem;cursor:pointer;text-decoration:none;
+  transition:border-color .16s,background .16s,opacity .16s;
+}
+.btn::after{content:"→";color:var(--signal);}
+.btn:hover{border-color:var(--signal);background:var(--signal-soft);}
+.btn[disabled]{opacity:.5;cursor:default;}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--signal);outline-offset:3px;
+}
+
+/* ---------- scroll-driven chain ---------- */
+.chain{list-style:none;margin:0;padding:0;}
+.stage{display:grid;grid-template-columns:14px 1fr;gap:1.7rem;}
+.spine{position:relative;}
+.spine::before{
+  content:"";position:absolute;left:6px;top:0;bottom:0;width:1px;
+  background-image:repeating-linear-gradient(to bottom,var(--line) 0 3px,transparent 3px 7px);
+  background-size:1px 7px;
+}
+.stage:first-child .spine::before{top:1.85rem;}
+.stage:last-child .spine::before{bottom:auto;height:1.85rem;}
+.marker{
+  position:absolute;left:1px;top:1.35rem;width:11px;height:11px;
+  border:1px solid var(--dim);background:var(--ink);
+  transform:rotate(45deg);
+  transition:border-color .35s ease,background .35s ease,box-shadow .35s ease,opacity .35s ease;
+}
+.stage-body{padding:1.1rem 0 2.9rem;max-width:35rem;transition:opacity .45s ease;}
+.stage-idx{
+  font-family:var(--f-mono);font-size:.66rem;color:var(--dim);
+  letter-spacing:.15em;text-transform:uppercase;margin:0 0 .55rem;
+  transition:color .35s ease;
+}
+.stage-body h2{
+  margin:0 0 .5rem;font-size:1.3rem;
+  font-variation-settings:"wght" 620,"wdth" 104;font-weight:600;letter-spacing:-.012em;
+}
+.stage-lead{margin:0 0 .85rem;color:var(--fg);font-size:1.02rem;}
+.stage-note{margin:0;color:var(--muted);font-size:.95rem;}
+
+.stage[data-state="pending"] .stage-body{opacity:.5;}
+.stage[data-state="done"] .stage-body{opacity:.78;}
+.stage[data-state="active"] .stage-body{opacity:1;}
+.stage[data-state="done"] .spine::before,
+.stage[data-state="active"] .spine::before{
+  background-image:repeating-linear-gradient(to bottom,var(--signal) 0 5px,transparent 5px 10px);
+  background-size:1px 10px;
+}
+.stage[data-state="done"] .spine::before{opacity:.45;}
+.stage[data-state="active"] .spine::before{animation:flow-v 1.15s linear infinite;}
+.stage[data-state="done"] .marker{border-color:var(--signal);background:var(--signal);opacity:.5;}
+.stage[data-state="active"] .marker{
+  border-color:var(--signal);background:var(--signal);
+  box-shadow:0 0 0 5px var(--signal-soft);
+}
+.stage[data-state="active"] .stage-idx{color:var(--signal);}
+@keyframes flow-v{to{background-position:0 10px;}}
+
+.chain-readout{
+  display:none;
+  position:fixed;left:1.25rem;bottom:1.6rem;z-index:5;
+  flex-direction:column;align-items:flex-start;gap:.55rem;
+  margin:0;pointer-events:none;
+  font-family:var(--f-mono);font-size:.62rem;letter-spacing:.12em;
+  color:var(--dim);font-variant-numeric:tabular-nums;
+  opacity:0;transition:opacity .4s ease;
+}
+@media (min-width:60rem){ .chain-readout{display:flex;} }
+.chain-readout[data-in="1"]{opacity:1;}
+.chain-readout .pips{display:flex;flex-direction:column;gap:5px;}
+.chain-readout .pip{width:2px;height:15px;background:var(--line);transition:background .3s ease;}
+.chain-readout .pip[data-on="1"]{background:var(--signal);}
+
+/* ---------- method ---------- */
+.steps{display:flex;flex-direction:column;gap:2.2rem;max-width:44rem;}
+.step{display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:start;}
+.step .tick{width:1.6rem;height:1px;background:var(--signal);opacity:.6;margin-top:.85rem;}
+.step p{margin:0;color:var(--muted);}
+.step b{
+  color:var(--fg);font-weight:600;font-variation-settings:"wght" 620,"wdth" 104;
+  display:block;margin-bottom:.3rem;
+}
+
+/* ---------- contact ---------- */
+form{max-width:27rem;display:flex;flex-direction:column;gap:1.1rem;}
+label{
+  display:block;font-family:var(--f-mono);font-size:.66rem;color:var(--dim);
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:.45rem;
+}
+input[type=text],input[type=email],textarea{
+  width:100%;background:var(--panel);border:1px solid var(--line);border-radius:2px;
+  color:var(--fg);font:inherit;font-size:.95rem;padding:.65rem .8rem;
+  transition:border-color .16s;
+}
+input[type=text]:focus,input[type=email]:focus,textarea:focus{border-color:var(--signal);}
+textarea{min-height:7rem;resize:vertical;}
+.form-error{
+  margin:0;color:var(--signal);font-family:var(--f-mono);font-size:.7rem;
+  letter-spacing:.06em;
+}
+.sent{
+  max-width:27rem;border:1px solid var(--signal);background:var(--signal-soft);
+  border-radius:3px;padding:1.1rem 1.2rem;
+}
+.sent .stamp{
+  font-family:var(--f-mono);font-size:.66rem;color:var(--signal);
+  letter-spacing:.14em;text-transform:uppercase;margin:0 0 .4rem;
+}
+.sent p{margin:0;color:var(--muted);font-size:.94rem;}
+footer{
+  padding:1.6rem 0 3.5rem;color:var(--dim);
+  font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+}
+
+@media (max-width:40rem){
+  .stage{gap:1.1rem;}
+  .stage-body{padding-bottom:2.2rem;}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;}
+  .stage .stage-body{opacity:1!important;}
 }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap"><span class="mark">Stratagem</span></div>
-</header>
+<div class="field" aria-hidden="true"></div>
+<div class="field-hot" aria-hidden="true"></div>
 
-<section id="hero">
-  <div class="wrap">
-    <h1>Zero to one is its own discipline.</h1>
+<div class="page">
+  <div class="rail" aria-hidden="true"></div>
+
+  <header class="site">
+    <span class="mark">Stratagem</span>
+    <span class="coord">BOS · 42.36°N 71.06°W</span>
+  </header>
+
+  <section id="hero">
+    <h1 id="headline"><span class="hline">Zero to one</span><span class="hline">is its own discipline.</span></h1>
     <p class="lede">Most advice assumes a company already exists. Stratagem works with founders in the stretch before that — and doesn't stop at advice. We stand in and run the motion until it runs without us.</p>
     <a class="btn" href="#contact">Start a conversation</a>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="grid">
-      <div>
-        <h2>Product-market fit</h2>
-        <p>Establishing whether the fit is real, and naming what would show it isn't.</p>
-      </div>
-      <div>
-        <h2>ICP</h2>
-        <p>Defining who the product is actually for, narrowly enough to act on.</p>
-      </div>
-      <div>
-        <h2>Go-to-market</h2>
-        <p>How the first customers hear about you, and why they say yes.</p>
-      </div>
-    </div>
-  </div>
   </section>
 
-<section>
-  <div class="wrap">
+  <section id="services">
+    <ol class="chain" id="chain">
+      <li class="stage" data-state="pending" data-key="ICP">
+        <div class="spine" aria-hidden="true"><span class="marker"></span></div>
+        <div class="stage-body">
+          <p class="stage-idx">Stage 01</p>
+          <h2>ICP</h2>
+          <p class="stage-lead">Defining who the product is actually for, narrowly enough to act on.</p>
+          <p class="stage-note">Most early ICPs name a category, not a customer. "Mid-market fintech" doesn't tell you who has the problem, who feels it this quarter, or who can sign. We get to the specific person in the specific situation where your product is urgent rather than interesting — narrow enough that it's obvious who to approach, and obvious who to turn down.</p>
+        </div>
+      </li>
+      <li class="stage" data-state="pending" data-key="Product-market fit">
+        <div class="spine" aria-hidden="true"><span class="marker"></span></div>
+        <div class="stage-body">
+          <p class="stage-idx">Stage 02</p>
+          <h2>Product-market fit</h2>
+          <p class="stage-lead">Establishing whether the fit is real, and naming what would show it isn't.</p>
+          <p class="stage-note">Enthusiasm isn't evidence, and neither is a waitlist. Before you go looking, we define what a real signal would have to look like — and what result would force you to change course. Then we go get it. Sometimes the answer is that the fit is there and you've been underselling it. Sometimes it isn't, and learning that in six weeks instead of six quarters is the whole return on the engagement.</p>
+        </div>
+      </li>
+      <li class="stage" data-state="pending" data-key="Go-to-market">
+        <div class="spine" aria-hidden="true"><span class="marker"></span></div>
+        <div class="stage-body">
+          <p class="stage-idx">Stage 03</p>
+          <h2>Go-to-market</h2>
+          <p class="stage-lead">How the first customers hear about you, and why they say yes.</p>
+          <p class="stage-note">Before there's a funnel, there's a sequence of conversations that either work or they don't. We build the first repeatable version: the channel, the message, the qualification, the objection you'll hear every time and the answer to it. Not a strategy deck — a motion your team can run without you in the room.</p>
+        </div>
+      </li>
+    </ol>
+    <p class="chain-readout" id="chainReadout" aria-hidden="true">
+      <span class="pips"><span class="pip"></span><span class="pip"></span><span class="pip"></span></span>
+      <span id="chainLabel">—/03</span>
+    </p>
+  </section>
+
+  <section id="method">
     <div class="steps">
       <div class="step">
-        <p><b>Engagements start where it's broken.</b> There's no fixed order. Sometimes the ICP is wrong and nothing downstream can work until it's fixed. Sometimes the fit is real and the motion simply doesn't exist yet.</p>
+        <span class="tick" aria-hidden="true"></span>
+        <p><b>Engagements start where it's broken.</b>There's no fixed order. Sometimes the ICP is wrong and nothing downstream can work until it's fixed. Sometimes the fit is real and the motion simply doesn't exist yet.</p>
       </div>
       <div class="step">
-        <p><b>You keep the system.</b> The engagement ends with something repeatable your team owns, and revenue on the board while it gets built.</p>
+        <span class="tick" aria-hidden="true"></span>
+        <p><b>You keep the system.</b>The engagement ends with something repeatable your team owns, and revenue on the board while it gets built.</p>
       </div>
     </div>
-  </div>
   </section>
 
-<section id="contact">
-  <div class="wrap">
-    <p class="eyebrow contact-head">Contact us</p>
+  <section id="contact">
+    <p class="eyebrow">Contact us</p>
     <p class="lede">Tell us what you're building and where you need help.</p>
     <p class="note">Best fit before Series A, when the motion doesn't exist yet.</p>
 
-    <form action="https://formspree.io/f/mdekndvw" method="POST">
+    <form id="contactForm" action="https://formspree.io/f/mdekndvw" method="POST">
       <p hidden><label>Leave blank: <input type="text" name="_gotcha"></label></p>
       <div>
         <label for="name">Name</label>
@@ -170,13 +353,137 @@ footer { padding: 1.4rem 0 3rem; color: var(--dim); font-size: 0.85rem; }
         <textarea id="detail" name="detail" required></textarea>
       </div>
       <button class="btn" type="submit">Send</button>
+      <p class="form-error" id="formError" hidden>That didn't send. Please try again.</p>
     </form>
-  </div>
-</section>
 
-<footer>
-  <div class="wrap">Stratagem · Boston · 2026</div>
-</footer>
+    <div class="sent" id="sent" hidden>
+      <p class="stamp">Received</p>
+      <p id="sentMsg">We'll come back to you shortly.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>Stratagem · Boston · 2026</span>
+    <span>www.strgm.co</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---- ambient field follows cursor ---- */
+  var px = 0, py = 0, pQueued = false;
+  window.addEventListener("pointermove", function(e){
+    px = e.clientX; py = e.clientY;
+    if (pQueued) return;
+    pQueued = true;
+    requestAnimationFrame(function(){
+      pQueued = false;
+      root.style.setProperty("--mx", px + "px");
+      root.style.setProperty("--my", py + "px");
+      tuneHeadline(px, py);
+    });
+  }, {passive:true});
+
+  /* ---- variable-font headline ---- */
+  var chars = [];
+  document.querySelectorAll("#headline .hline").forEach(function(line){
+    var text = line.textContent;
+    line.textContent = "";
+    for (var i = 0; i < text.length; i++){
+      var s = document.createElement("span");
+      s.textContent = text[i];
+      if (text[i] === " ") s.style.whiteSpace = "pre";
+      line.appendChild(s);
+      chars.push(s);
+    }
+    line.appendChild(document.createTextNode(" "));
+  });
+
+  var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  function tuneHeadline(x, y){
+    if (!fine || reduce) return;
+    for (var i = 0; i < chars.length; i++){
+      var r = chars[i].getBoundingClientRect();
+      if (!r.width && !r.height) continue;
+      var dx = x - (r.left + r.width / 2);
+      var dy = y - (r.top + r.height / 2);
+      var k = Math.max(0, 1 - Math.sqrt(dx*dx + dy*dy) / 260);
+      k = k * k;
+      chars[i].style.fontVariationSettings =
+        '"wght" ' + Math.round(430 + k * 330) + ', "wdth" ' + (100 + k * 6).toFixed(1);
+    }
+  }
+
+  /* ---- scroll-driven chain ---- */
+  var stages = Array.prototype.slice.call(document.querySelectorAll("#chain .stage"));
+  var pips = Array.prototype.slice.call(document.querySelectorAll("#chainReadout .pip"));
+  var label = document.getElementById("chainLabel");
+  var svc = document.getElementById("services");
+  var readout = document.getElementById("chainReadout");
+  var active = -2;
+
+  function updateChain(){
+    var vh = window.innerHeight;
+    var sr = svc.getBoundingClientRect();
+    readout.dataset.in = (sr.top < vh * 0.85 && sr.bottom > vh * 0.25) ? "1" : "0";
+    var focus = vh * 0.55;
+    var next = -1;
+    for (var i = 0; i < stages.length; i++){
+      if (stages[i].getBoundingClientRect().top < focus) next = i;
+    }
+    if (next === active) return;
+    active = next;
+
+    for (var j = 0; j < stages.length; j++){
+      stages[j].dataset.state = j < active ? "done" : (j === active ? "active" : "pending");
+      pips[j].dataset.on = j <= active ? "1" : "0";
+    }
+    label.textContent = active < 0 ? "—/03" : "0" + (active + 1) + "/03";
+  }
+
+  var sQueued = false;
+  function onScroll(){
+    if (sQueued) return;
+    sQueued = true;
+    requestAnimationFrame(function(){ sQueued = false; updateChain(); });
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  window.addEventListener("resize", onScroll, {passive:true});
+
+  /* ---- contact form: submit to Formspree without leaving the page ---- */
+  var form = document.getElementById("contactForm");
+  var sent = document.getElementById("sent");
+  var errEl = document.getElementById("formError");
+
+  if (window.fetch && window.FormData){
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      errEl.hidden = true;
+      btn.disabled = true;
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { "Accept": "application/json" }
+      }).then(function(res){
+        if (!res.ok) throw new Error(res.status);
+        document.getElementById("sentMsg").textContent =
+          "We'll come back to you at " + document.getElementById("email").value.trim() + " shortly.";
+        form.hidden = true;
+        sent.hidden = false;
+      }).catch(function(){
+        btn.disabled = false;
+        errEl.hidden = false;
+      });
+    });
+  }
+
+  updateChain();
+})();
+</script>
 
 </body>
 </html>
