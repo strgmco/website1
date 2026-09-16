@@ -160,9 +160,8 @@ footer { padding: 1.4rem 0 3rem; color: var(--dim); font-size: 0.85rem; }
          (set the address in Site settings > Forms > Form notifications).
          Any other host: delete the two netlify attributes and instead sign up
          at formspree.io, then set action="https://formspree.io/f/YOURID". -->
-    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="company">
-      <input type="hidden" name="form-name" value="contact">
-      <p hidden><label>Leave blank: <input name="company"></label></p>
+    <form action="https://formspree.io/f/mdekndvw" method="POST">>
+      <p hidden><label>Leave blank: <input type="text" name="_gotcha"></label></p>
       <div>
         <label for="name">Name</label>
         <input id="name" name="name" type="text" required>
